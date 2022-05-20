@@ -27,6 +27,10 @@ pipeline{
         }
 
         stage("Project-Deploy-Prod"){
+            input{
+                message "Successfully checked on stage, Should we continue on prod?"
+                ok "Yes we should"
+            }
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'latestcred', path: '', url: 'http://52.23.238.138:8080')], contextPath: '/techserver', war: '**/*.war'
               
